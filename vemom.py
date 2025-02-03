@@ -1,39 +1,51 @@
 # meta developer: @werpyock0
-# meta description: сразу включается. везде Веном пишет лучше не устанавливать
-
+# meta description: веном
 from hikkatl.types import Message
 from .. import loader, utils
 
 @loader.tds
 class VenomModule(loader.Module):
+    """веном"""
+
     strings = {
-        "name": "Venomod",
-        "description": "везде веном"
+        "name": "VenomModule",
+        "description": "веном"
     }
 
     def __init__(self):
         self.config = loader.ModuleConfig(
             loader.ConfigValue(
-                "status",
-                True,
-                "Enable or disable the module",
-                validator=loader.validators.Boolean(),
+                "enabled_chats",
+                [],
+                "Список ID чатов, в которых модуль активен",
+                validator=loader.validators.Series(
+                    loader.validators.Integer()
+                ),
             ),
         )
 
-    @loader.watcher(
-        only_messages=True,
-        no_commands=True,
-    )
+    @loader.watcher(only_messages=True, no_commands=True)
     async def watcher(self, message: Message):
-        if not self.config["status"]:
-            return
-        if message.chat_id:
+        if message.chat_id in self.config["enabled_chats"]:
             await utils.answer(message, "venom.")
             await message.delete()
 
-    @loader.command(ru_doc="Включить/выключить модуль")
-    async def togglevenom(self, message: Message):
-        self.config["status"] = not self.config["status"]
-        status = "enabled" if self.config["status"] else "disabled"
-        await utils.answer(message, f"Module is now {status}.")
+    @loader.command(ru_doc="Добавить чат в список активных")
+    async def addvenomchat(self, message: Message):
+        """Добавить текущий чат в список активных"""
+        chat_id = message.chat_id
+        if chat_id not in self.config["enabled_chats"]:
+            self.config["enabled_chats"].append(chat_id)
+            await utils.answer(message, "Чат добавлен в список активных.")
+        else:
+            await utils.answer(message, "Чат уже в списке активных.")
+
+    @loader.command(ru_doc="Удалить чат из списка активных")
+    async def removevenomchat(self, message: Message):
+        """Удалить текущий чат из списка активных"""
+        chat_id = message.chat_id
+        if chat_id in self.config["enabled_chats"]:
+            self.config["enabled_chats"].remove(chat_id)
+            await utils.answer(message, "Чат удален из списка активных.")
+        else:
+            await utils.answer(message, "Чата нет в списке активных.")
