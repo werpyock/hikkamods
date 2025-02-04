@@ -1,17 +1,17 @@
-__version__ = (1, 3, 0)
+__version__ = (1, 3, 2)
 # meta developer: @werpyock0
 from hikka import loader, utils
 import asyncio
 import shlex
 
 class WSpamMod(loader.Module):
-    """Гибкий спам-модуль (посмотри в кфг)."""
+    """Гибкий спам-модуль."""
 
     strings = {
         "name": "WSpamMod",
         "no_args": "❌ Пожалуйста, укажите текст для спама.",
-        "invalid_count": "❌ Некорректное количество сообщений. Используйте положительное целое число.",
-        "invalid_delay": "❌ Некорректная задержка. Используйте неотрицательное число.",
+        "invalid_count": "❌ Некорректное количество сообщений.",
+        "invalid_delay": "❌ Некорректная задержка.",
         "spamming": "✅ Начинаю спам...",
         "stopped": "🛑 Все спам-задачи остановлены.",
     }
@@ -20,7 +20,12 @@ class WSpamMod(loader.Module):
         self.config = loader.ModuleConfig(
             "DEFAULT_TEXT", "Привет, мир!", "Текст по умолчанию для спама",
             "DEFAULT_COUNT", 10, "Количество сообщений по умолчанию",
-            "DEFAULT_DELAY", 1.0, "Задержка между сообщениями по умолчанию (в секундах)"
+            "DEFAULT_DELAY", 1.0, "Задержка между сообщениями по умолчанию (в секундах)",
+            "SPAM_ANNOUNCE_MODE", 0, "Режим уведомлений о спаме:\n"
+                                     "-1 — не изменять сообщение с командой и не показывать сообщение\n"
+                                     "0 — не изменять сообщение с командой\n"
+                                     "1 — удалять сообщение о начале спама\n"
+                                     "2 — показывать сообщение о начале спама"
         )
         self.spam_tasks = set()
 
@@ -35,33 +40,33 @@ class WSpamMod(loader.Module):
     async def _start_spam(self, message, delete_after_send):
         args = utils.get_args_raw(message)
         if not args:
-            text = self.config["DEFAULT_TEXT"]
-            count = self.config["DEFAULT_COUNT"]
-            delay = self.config["DEFAULT_DELAY"]
+            text, count, delay = self.config["DEFAULT_TEXT"], self.config["DEFAULT_COUNT"], self.config["DEFAULT_DELAY"]
         else:
             try:
                 parsed_args = shlex.split(args)
             except ValueError:
-                await message.edit(self.strings["no_args"])
-                return
-
+                return await message.edit(self.strings["no_args"])
             text = parsed_args[0] if len(parsed_args) > 0 else self.config["DEFAULT_TEXT"]
             try:
                 count = int(parsed_args[1]) if len(parsed_args) > 1 else self.config["DEFAULT_COUNT"]
                 if count <= 0:
                     raise ValueError
             except ValueError:
-                await message.edit(self.strings["invalid_count"])
-                return
+                return await message.edit(self.strings["invalid_count"])
             try:
                 delay = float(parsed_args[2]) if len(parsed_args) > 2 else self.config["DEFAULT_DELAY"]
                 if delay < 0:
                     raise ValueError
             except ValueError:
-                await message.edit(self.strings["invalid_delay"])
-                return
+                return await message.edit(self.strings["invalid_delay"])
 
-        await message.edit(self.strings["spamming"])
+        announce_mode = self.config["SPAM_ANNOUNCE_MODE"]
+        if announce_mode == 2:
+            await message.edit(self.strings["spamming"])
+        elif announce_mode == 1:
+            await message.delete()
+        elif announce_mode == -1:
+            pass
 
         async def spam_task():
             for _ in range(count):
