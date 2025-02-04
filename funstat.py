@@ -1,5 +1,5 @@
+__version__ = (1, 2, 0)
 # meta developer: @werpyock0
-# meta description: Модуль на фанстат, использует бота @fanstarttt_bot чтобы получить ответ.
 from hikka import loader, utils
 from telethon.tl.types import Message
 from telethon import events
