@@ -12,7 +12,7 @@ class KomaruMod(loader.Module):
 
     async def komarugifcmd(self, message):
         """Рандомная гифка"""
-        channel = "@komarumodgif"
+        channel = "@komarumod"
         gifs = [msg async for msg in self.client.iter_messages(channel, filter=InputMessagesFilterGif)]
         if not gifs:
             await message.edit("<b>Нет доступных GIF-ов в канале!</b>")
