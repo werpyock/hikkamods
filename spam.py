@@ -1,4 +1,4 @@
-__version__ = (2, 5, 0)
+__version__ = (1, 3, 0)
 # meta developer: @werpyock0
 from hikka import loader, utils
 import asyncio
