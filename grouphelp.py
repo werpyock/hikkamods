@@ -13,7 +13,7 @@ class IrisMod(loader.Module):
         self.client = client
 
     @loader.command()
-    async def iris(self, message):
+    async def grouphelp(self, message):
         """Отправляет команду @grouphelpmodbot."""
         command_text = utils.get_args_raw(message)
         if not command_text:
