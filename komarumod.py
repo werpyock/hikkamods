@@ -1,15 +1,16 @@
+__version__ = (1, 8, 0)
 # meta developer: @werpyock0
 from .. import loader, utils
 import random
 from telethon.tl.types import InputMessagesFilterGif
 
 class KomaruMod(loader.Module):
-    """Достает рандомную гифку из @komarumod"""
+    """Достает рандомную гифку из @komarumodgif"""
+    
     strings = {"name": "KomaruMod"}
 
     async def client_ready(self, client, db):
         self.client = client
-
     async def komarugifcmd(self, message):
         """Рандомная гифка"""
         channel = "@komarumod"
