@@ -1,5 +1,5 @@
+__version__ = (2, 5, 0)
 # meta developer: @werpyock0
-
 from hikka import loader, utils
 import asyncio
 import shlex
