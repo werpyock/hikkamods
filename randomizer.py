@@ -1,4 +1,4 @@
-__version__ = (1, 0, 0)
+__version__ = (1, 0, 2)
 # meta developer: @werpyock0
 from .. import loader, utils
 import random
@@ -23,19 +23,19 @@ class RandomNumberGeneratorMod(loader.Module):
                 min_value = int(args[0])
                 max_value = int(args[1])
             except ValueError:
-                await message.reply("🚫Пожалуйста, введите два целых числа.")
+                await message.edit("🚫Пожалуйста, введите два целых числа.")
                 return
         else:
             min_value = self.config["min_value"]
             max_value = self.config["max_value"]
 
         if min_value is None or max_value is None:
-            await message.reply("🚫Необходимо указать диапазон чисел в аргументах команды или в конфигурации модуля.")
+            await message.edit("🚫Необходимо указать диапазон чисел в аргументах команды или в конфигурации модуля.")
             return
 
         if min_value > max_value:
-            await message.reply("🚫Минимальное значение не может быть больше максимального.")
+            await message.edit("🚫Минимальное значение не может быть больше максимального.")
             return
 
         random_number = random.randint(min_value, max_value)
-        await message.reply(f"✅Случайное число между <code>{min_value}</code> и <code>{max_value}</code>: <code>{random_number}</code>")
+        await message.edit(f"✅Случайное число между <code>{min_value}</code> и <code>{max_value}</code>: <code>{random_number}</code>")
