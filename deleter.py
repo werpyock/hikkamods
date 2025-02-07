@@ -5,7 +5,7 @@ from .. import loader, utils
 
 @loader.tds
 class DeleterMod(loader.Module):
-    """Модуль для удаления твоих сообщений без подтверждения."""
+    """Модуль для удаления твоих сообщений."""
 
     strings = {"name": "DeleterMod"}
 
