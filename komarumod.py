@@ -1,12 +1,12 @@
 __version__ = (1, 9, 0)
-# meta developer: @werpyock0
+# meta developer: @wmodules
 
 from .. import loader, utils
 import random
 from telethon.tl.types import InputMessagesFilterGif
 
 class KomaruMod(loader.Module):
-    """Достает рандомную гифку из @komarumod"""
+    """Достает рандомную гифку из @komarumodd"""
 
     strings = {"name": "KomaruMod"}
 
@@ -15,7 +15,7 @@ class KomaruMod(loader.Module):
 
     async def komarugifcmd(self, message):
         """Рандомная гифка"""
-        channel = "@komarumod"
+        channel = "@komarumodd"
         gifs = [msg async for msg in self.client.iter_messages(channel, filter=InputMessagesFilterGif)]
         if not gifs:
             await message.edit("<b>Нет доступных GIF-ов в канале!</b>")
