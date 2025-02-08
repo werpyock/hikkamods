@@ -5,7 +5,7 @@ import asyncio
 from telethon.errors import TimeoutError
 
 @loader.tds
-class IrisMod(loader.Module):
+class GroupHelpMod(loader.Module):
     """Модуль для отправки сообщения груп хелпу и получения ответа."""
     strings = {"name": "GroupHelpMod"}
 
@@ -14,13 +14,13 @@ class IrisMod(loader.Module):
 
     @loader.command()
     async def grouphelp(self, message):
-        """Отправляет команду @grouphelpmodbot."""
+        """Отправляет команду @grouphelp726bot."""
         command_text = utils.get_args_raw(message)
         if not command_text:
-            await message.edit("<b>❌ Укажите команду для @grouphelpmodbot</b>")
+            await message.edit("<b>❌ Укажите команду для @grouphelp726bot</b>")
             return
 
-        bot_username = "grouphelpmodbot"
+        bot_username = "grouphelp726bot"
         try:
             async with self.client.conversation(bot_username, timeout=15) as conv:
                 await conv.send_message(command_text)
