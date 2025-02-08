@@ -1,5 +1,5 @@
 __version__ = (1, 0, 0)
-# meta developer: @werpyock0
+# meta developer: @wmodules
 from hikka import loader, utils
 import asyncio
 from telethon.errors import TimeoutError
