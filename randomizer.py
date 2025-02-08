@@ -1,5 +1,5 @@
 __version__ = (1, 0, 2)
-# meta developer: @werpyock0
+# meta developer: @wmodules
 from .. import loader, utils
 import random
 
