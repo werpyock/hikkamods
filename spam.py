@@ -1,5 +1,5 @@
 __version__ = (1, 3, 4)
-# meta developer: @werpyock0
+# meta developer: @wmodules
 from hikka import loader, utils
 import asyncio
 import shlex
