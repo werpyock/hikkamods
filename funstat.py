@@ -13,7 +13,7 @@
 # limitations under the License.
 __version__ = (1, 1, 0)
 # meta developer: @wmodules
-from hikka import loader, utils
+from .. import loader, utils
 from telethon.tl.types import Message
 from telethon import events
 
