@@ -13,7 +13,7 @@
 # limitations under the License.
 __version__ = (1, 4, 1)
 # meta developer: @wmodules
-from hikka import loader, utils
+from .. import loader, utils
 import asyncio
 import shlex
 
