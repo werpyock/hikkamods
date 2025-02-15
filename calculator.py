@@ -14,7 +14,7 @@
 __version__ = (1, 0, 0)
 # meta developer: @wmodules
 
-from hikka import loader, utils
+from .. import loader, utils
 import ast
 import operator as op
 
