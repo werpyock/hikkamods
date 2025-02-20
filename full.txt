@@ -1,0 +1,10 @@
+autoreader
+calculator
+deleter
+funstat
+grouphelp
+iris
+komarumod
+randomizer
+spam
+spamcheck
