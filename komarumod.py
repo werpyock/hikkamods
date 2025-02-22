@@ -19,7 +19,7 @@ import random
 from telethon.tl.types import InputMessagesFilterGif
 
 class KomaruMod(loader.Module):
-    """Достает рандомную гифку из @komarumodd"""
+    """Достает рандомную гифку из @komarumodd, мили камарек"""
 
     strings = {"name": "KomaruMod"}
 
