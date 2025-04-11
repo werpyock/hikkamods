@@ -9,4 +9,4 @@ randomizer
 spam
 spamcheck
 readfile
-chencoding
+chenc
