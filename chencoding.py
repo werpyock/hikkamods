@@ -19,7 +19,7 @@ import chardet
 import io
 
 @loader.tds
-class EncMod(loader.Module):
+class ChEncMod(loader.Module):
     """Изиеняет кодировки файлов"""
     strings = {
         'name': 'FileEnc',
