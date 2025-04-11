@@ -8,3 +8,4 @@ komarumod
 randomizer
 spam
 spamcheck
+readfile
