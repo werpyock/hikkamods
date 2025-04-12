@@ -11,3 +11,4 @@ spamcheck
 readfile
 chenc
 wordbyword
+speedtest
