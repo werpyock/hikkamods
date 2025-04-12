@@ -10,3 +10,4 @@ spam
 spamcheck
 readfile
 chenc
+wordbyword
