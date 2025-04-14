@@ -47,7 +47,7 @@ class ClickMod(loader.Module):
     async def _send_clicker(self, ctx):
         clicks = self.config["clicks"]
         await self.inline.form(
-            text=f"Сейчас {clicks}. Кликай!:",
+            text=f"Сейчас {clicks} кликов. Кликай!:",
             message=ctx,
             reply_markup=[[{
                 "text": "Кликнуть",
