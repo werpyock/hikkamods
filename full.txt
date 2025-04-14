@@ -14,3 +14,4 @@ spam
 spamcheck
 speedtest
 wordbyword
+click
