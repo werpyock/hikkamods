@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 __version__ = (1, 1, 0)
-# meta developer: @wmodules
+# meta developer: @terrasa120
 
 from .. import loader, utils
 from telethon.tl.types import User, Chat, Channel
