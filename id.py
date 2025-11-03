@@ -12,8 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 __version__ = (1, 0, 0)
-# meta developer: @wmodules
-
+# meta developer: @terrasa120
 from hikkatl.types import Message
 from hikkatl.utils import resolve_id, get_display_name
 from .. import loader, utils
