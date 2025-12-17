@@ -13,13 +13,14 @@
 # limitations under the License.
 __version__ = (1, 0, 9)
 # meta developer: @terrasa120
+# @CoderHoly долбоеб (спиздил и не отметил оригинального автора)
 import os
 from telethon.tl.types import Message
 from .. import loader, utils
 
 @loader.tds
 class ReadFileMod(loader.Module):
-    """Чтение файла из реплая"""
+    """Чтение файла из реплая."""
 
     strings = {"name": "ReadFile"}
 
